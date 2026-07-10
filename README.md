@@ -1,6 +1,11 @@
 # Nova
-A programming language I came up with at 11PM
+A programming language I came up with at 11PM.
 Basically, the idea is for it to be easy to understand while being able to handle types, objects etc.
+
+# Features
+- easy to read syntax
+- type support
+- OOP support (planned)
 
 # Example code
 
@@ -34,3 +39,5 @@ $this is a comment.
 $this won't execute:
 $make int x = 5
 ```
+# Additional information
+Nova is in early development. Many of the features are only planned (for now). Everything can change.
