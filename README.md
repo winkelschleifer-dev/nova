@@ -1,6 +1,6 @@
 # Nova
 A programming language I came up with at 11PM.
-Basically, the idea is for it to be easy to understand while being able to handle types, objects etc.
+Basically, the idea is for it to be easy to understand while being able to handle types, objects etc. Something like C++ if it was human-readable.
 
 # Features
 - easy to read syntax
