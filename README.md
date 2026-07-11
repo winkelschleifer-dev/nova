@@ -25,11 +25,11 @@ The following features are part of the design, but are not fully implemented yet
 $ A comment
 
 make int x = 1
-make str message = "Value of x:"
+make str message = "cat"
 
 set x += 1
-say message + x
-say "Value of x is {x}"
+say message
+say x
 ```
 
 ## Running the prototype
