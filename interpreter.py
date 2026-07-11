@@ -10,7 +10,7 @@ print("****    ****   ********      ****     ****    **** ")
 for _ in range(0, 5):
     print()
 
-print("Nova Language interpreter v0.0.3a")
+print("Nova Language interpreter v0.0.4a")
 
 for _ in range(0, 5):
     print()
@@ -61,10 +61,13 @@ for raw_line in lines:
 
 
         if var_type == "text":
-            variables[var_name] = {
-                "type": "text",
-                "value": value
-            }
+          if value.startswith('"') and value.endswith('"'):
+            value = value[1:-1]
+
+          variables[var_name] = {
+              "type": "text",
+              "value": value
+          }
 
 
         elif var_type == "int":
@@ -229,6 +232,10 @@ for raw_line in lines:
             print(variables[output]["value"])
 
         else:
+            output = output[1:-1]
+            for name, data in variables.items():
+              output = output.replace("{" + name + "}", str(data["value"]).strip())
+
             print(output)
 
 
