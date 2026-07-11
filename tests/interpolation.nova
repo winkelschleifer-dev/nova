@@ -1,2 +1,7 @@
+$ interpolation test
+$ expected output:
+
+$ Hello from Nova
+
 make text name = "Nova"
 say "Hello from {name}"

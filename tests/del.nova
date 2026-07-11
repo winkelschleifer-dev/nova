@@ -1,0 +1,8 @@
+$ del test
+$ expected output:
+
+$ Name error (line 8): variable 'x' is not defined
+
+make int x = 5
+del x
+say x

@@ -1,3 +1,9 @@
+$ variable test
+$ expected output:
+
+$ 5
+$ 25
+
 make int x = 5
 say x
 set x *= 5

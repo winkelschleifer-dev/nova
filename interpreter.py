@@ -1,22 +1,24 @@
-print("----    ----   --------   ---    ---     ------  ")
-print("*****   ****  **********  ***    ***    ********   ")
-print("------  ---- ----    ---- ---    ---   ----------  ")
-print("************ ***      *** ***    ***  ****    **** ")
-print("------------ ---      --- ---    ---  ------------ ")
-print("****  ****** ****    ****  ********   ************ ")
-print("----   -----  ----------    ------    ----    ---- ")
-print("****    ****   ********      ****     ****    **** ")
+import re, os
+
+print("\033[95m----    ----   --------   ---    ---     ------  ")
+print("\033[95m*****   ****  **********  ***    ***    ********   ")
+print("\033[95m------  ---- ----    ---- ---    ---   ----------  ")
+print("\033[95m************ ***      *** ***    ***  ****    **** ")
+print("\033[95m------------ ---      --- ---    ---  ------------ ")
+print("\033[95m****  ****** ****    ****  ********   ************ ")
+print("\033[95m----   -----  ----------    ------    ----    ---- ")
+print("\033[95m****    ****   ********      ****     ****    **** ")
 
 for _ in range(0, 5):
     print()
 
-print("Nova Language interpreter v0.0.4a")
+print("\033[0mNova Language interpreter v0.0.5a")
 
 for _ in range(0, 5):
     print()
 
 
-fileName = input("<NOVA> Please type in the file name (without .nova extension): ")
+fileName = input("\033[95m<NOVA>\033[0m Please type in the file name (without .nova extension): ")
 
 variables = {}
 
@@ -148,8 +150,10 @@ for raw_line in lines:
 
 
         if operator == "=":
+            if parts[3] in variables:
+                var["value"] = variables[parts[3]]["value"]
 
-            if var["type"] == "int":
+            elif var["type"] == "int":
                 var["value"] = int(value)
 
             elif var["type"] == "float":
@@ -172,6 +176,8 @@ for raw_line in lines:
 
 
         elif operator == "+=":
+            if parts[3] in variables:
+                var["value"] += variables[parts[3]]["value"]
 
             if var["type"] == "text":
                 var["value"] += value
@@ -191,6 +197,8 @@ for raw_line in lines:
 
 
         elif operator == "-=":
+            if parts[3] in variables:
+                var["value"] -= variables[parts[3]]["value"]
 
             if var["type"] == "int":
                 var["value"] -= int(value)
@@ -207,6 +215,8 @@ for raw_line in lines:
 
 
         elif operator == "*=":
+            if parts[3] in variables:
+                var["value"] *= variables[parts[3]]["value"]
 
             if var["type"] == "int":
                 var["value"] *= int(value)
@@ -231,12 +241,43 @@ for raw_line in lines:
         if output in variables:
             print(variables[output]["value"])
 
-        else:
+        elif output.startswith('"') and output.endswith('"'):
             output = output[1:-1]
-            for name, data in variables.items():
-              output = output.replace("{" + name + "}", str(data["value"]).strip())
 
-            print(output)
+            variables_found = re.findall(r"\{(.*?)\}", output)
+
+            error = False
+
+            for var in variables_found:
+                if var not in variables:
+                    print(f"Name error (line {lineNum}): variable '{var}' is not defined")
+                    error = True
+                    break
+
+            if not error:
+                for name, data in variables.items():
+                    output = output.replace(
+                        "{" + name + "}",
+                        str(data["value"])
+                    )
+
+                print(output)
+
+        else:
+            if output.isidentifier():
+                print(f"Name error (line {lineNum}): variable '{output}' is not defined")
+            else:
+                print(output)
+
+    elif keyword == "del":
+        if len(parts) != 2:
+            print(f"Syntax error (line {lineNum}): expected 'del <name>'")
+        elif parts[1] in variables:
+            del variables[parts[1]]
+        else:
+            print(f"Name error (line {lineNum}): variable '{parts[1]}' is not defined")
+
+
 
 
 
