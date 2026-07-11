@@ -1,2 +1,4 @@
 make int x = 5
+say x
 set x *= 5
+say x
