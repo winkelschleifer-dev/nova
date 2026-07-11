@@ -10,7 +10,7 @@ print("****    ****   ********      ****     ****    **** ")
 for _ in range(0, 5):
 	print()
 
-print("Nova Language interpreter v0.1a")
+print("Nova Language interpreter v0.0.1a")
 
 for _ in range(0, 5):
 	print()
