@@ -108,3 +108,5 @@ for raw_line in lines:
   elif keyword == "say":
     output = line[len("say"):].strip()
     print(output)
+
+input()
