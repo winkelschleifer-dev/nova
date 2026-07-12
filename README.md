@@ -1,4 +1,9 @@
-# Nova
+## Important
+I'm moving Nova to Codeberg 'cause its way more open and isn't dependent on companies.
+
+My Codeberg profile link is in my Github bio now.
+
+# Nova 
 
 Nova is an experimental programming language designed to be easy to read and understand while keeping a path toward typed, more capable programs. The original idea was: "What if C++, Java and Rust were more human-readable?"
 
